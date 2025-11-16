@@ -23,6 +23,7 @@ import community.community_louvain as community_louvain
 # Configuration de l'application
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 app.title = "Mental Health & Social Media Analysis"
+server = app.server  # Pour Gunicorn
 
 # Chargement des données
 df = pd.read_csv('mental_health_social_media.csv')
@@ -962,4 +963,4 @@ def update_recommendations(active_tab):
 
 # Lancer l'application
 if __name__ == '__main__':
-    app.run_server(debug=True, port=8050)
+    app.run_server(host='0.0.0.0', port=8050)
